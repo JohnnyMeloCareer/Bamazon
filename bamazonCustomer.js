@@ -1,10 +1,19 @@
+// Const is a variable that doesn't change it value
+// Require mysql, inquirer, and cli-table
+// mysql is a package that allows us to connect, and interact with mysql server.
 const mysql = require('mysql');
+// inquirer is a package that allow users interaction, in which you inquirer, and provide choices. 
 const inquirer = require('inquirer');
+// cli-table allows us to make the table, and it's a package that we install
 const Table = require("cli-table");
+
+// Let belong to the space that you're in. Independent of the first letter, Let is more local scoped, while Var is more so global. 
+// Block-scope the recordKeeping, databaseUpdate, and total
 let recordKeeping = [];
 let databaseUpdate = [];
 let total = 0;
 
+// Create a connection to mysql database
 const connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
@@ -13,12 +22,15 @@ const connection = mysql.createConnection({
   password: "root",
   database: "BamazonDB"
 });
+
+// Connection is defined back in line 17, and is equal to mysql.connection, .connect is a function that belongs to mysql, function is defining the following as a function
 connection.connect(function (err) {
   if (err) throw err;
   console.log("connected as id: " + connection.threadId);
-  itemsForSale();
+  itemsForSale(); // Running itemsForSale function
 });
 
+// Defining itemsForSale function
 function itemsForSale() {
   connection.query("SELECT * FROM products", function (err, res) {
     const table = new Table({
@@ -57,7 +69,7 @@ function purchase() {
           if (answer.amount > res[0].stock_quantity) {
             console.log('\r\n');
             console.log('Sorry, this amount is greater than what we have in invetory at this time.  Please try again');
-            setTimeout(function () { purchase() }, 1000);
+            setTimeout(function () { purchase() }, 1000); // So the question appear 1 second after the table.
           }
           else {
             recordKeeping.push(res, parseInt(answer.amount));
@@ -116,7 +128,7 @@ function checkOut() {
             connection.query(query2, [databaseUpdate[i + 1], databaseUpdate[i]], function (err, result) { })
           }
           console.log('\r\n');
-          console.log("Your parchase has been processed.  Thank you for yur business.  Hope to see you soon!!!")
+          console.log("Your purchase has been processed.  Thank you for your business.  Hope to see you soon!!!")
           console.log('\r\n');
           run = 0;
           break;
@@ -129,31 +141,3 @@ function checkOut() {
     })
 }
 
-function cellSpace(cell) {
-  this.cell = "  " + cell;
-  this.space = 28;
-  this.cellSpacing = function () {
-    for (var i = 0; i < this.cell.length; i++) {
-      this.space--;
-    }
-    for (var i = 0; i < this.space; i++) {
-      this.cell += " ";
-    }
-  }
-  this.cellSpacing();
-  return this.cell
-}
-function cellSpace2(cell) {
-  this.cell = "    " + cell;
-  this.space = 13;
-  this.cellSpacing = function () {
-    for (var i = 0; i < this.cell.length; i++) {
-      this.space--;
-    }
-    for (var i = 0; i < this.space; i++) {
-      this.cell += " ";
-    }
-  }
-  this.cellSpacing();
-  return this.cell
-}
