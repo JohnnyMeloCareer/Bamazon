@@ -19,6 +19,7 @@
   "homepage": "https://github.com/JohnnyMeloCareer/Bamazon#readme",
   "dependencies": {
     "cli-table": "^0.3.1",
+    "console.table": "^0.10.0",
     "inquirer": "^6.2.1",
     "mysql": "^2.16.0",
     "requirer": "0.0.4"

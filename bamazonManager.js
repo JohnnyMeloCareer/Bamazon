@@ -1,12 +1,12 @@
 // Require mysql, inquirer, and cli-table
 const mysql = require('mysql');
 const inquirer = require('inquirer');
-const Table = require("cli-table");
+const tabler = require("console.table");
 
 // Block-scope the recordKeeping, databaseUpdate, and total
 let thisDept = [];
 let deptArray = [];
-let total = 0;
+
 
 // Create a connection to mysql database
 const connection = mysql.createConnection({
@@ -34,7 +34,7 @@ function beginManager() {
             type: "list",
             name: "option",
             message: "please select an option.",
-            choices: ["View Products for Sale", "View Loe Inventory", "Add to Inventory", "Add New Product", "Exit"]
+            choices: ["View Products for Sale", "View Low Inventory", "Add to Inventory", "Add New Product", "Exit"]
         },
 
     ]).then(function(manager) {
@@ -44,7 +44,7 @@ function beginManager() {
             connection.query("SELECT * FROM products", function(err, res) {
                 if (err) throw err;
 
-                console.Table(res);
+                console.table(res);
 
                 beginManager();
 
@@ -61,7 +61,7 @@ function beginManager() {
 
                 if (res.length > 0) {
 
-                    console.Table(res);
+                    console.table(res);
 
                 }
 
@@ -88,7 +88,7 @@ function beginManager() {
 
                 if (err) throw err;
 
-                console.Table(res);
+                console.table(res);
 
 
                 prompt.start();
@@ -134,9 +134,9 @@ function beginManager() {
                             }
                             ], function(err, res) {});
 
-                            console.log("")
-
-
+                            console.log("You have added "+ result.amount + " more unit(s)of "
+                            + res[i].product_name + " to the inventory, making the "+mySelection+" total "
+                            + newAmount + ".");
                             beginManager();
 
 
@@ -230,7 +230,7 @@ function beginManager() {
                                 result.itemName, function(err, reso) {
                                     if (err) throw err;
 
-                                    console.Table(reso);
+                                    console.table(reso);
                                     startManager();
 
                                 });
