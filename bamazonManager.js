@@ -2,6 +2,7 @@
 const mysql = require('mysql');
 const inquirer = require('inquirer');
 const tabler = require("console.table");
+const prompt = require("prompt");
 
 // Block-scope the recordKeeping, databaseUpdate, and total
 let thisDept = [];
@@ -56,7 +57,7 @@ function beginManager() {
         }
         else if (manager.option === "View Low Inventory") {
 
-            connection.query("SELECT * FROM products WHERE stock_quality < 5", function(err, res) {
+            connection.query("SELECT * FROM products WHERE stock_quantity < 5", function(err, res) {
                 if (err) throw err;
 
                 if (res.length > 0) {
