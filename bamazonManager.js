@@ -1,8 +1,9 @@
 // Require mysql, inquirer, and cli-table
+// Requiring from both the prompt, and console.table package
 const mysql = require('mysql');
 const inquirer = require('inquirer');
-const tabler = require("console.table");
 const prompt = require("prompt");
+const Table = require("cli-table");
 
 // Block-scope the recordKeeping, databaseUpdate, and total
 let thisDept = [];
@@ -28,6 +29,7 @@ connection.connect(function(err) {
     beginManager();
 });
 
+// Defining beginManager function, followed by a prompt 
 function beginManager() {
     inquirer.prompt([
 
@@ -43,6 +45,7 @@ function beginManager() {
         if (manager.option === "View Products for Sale") {
 
             connection.query("SELECT * FROM products", function(err, res) {
+                
                 if (err) throw err;
 
                 console.table(res);
@@ -55,6 +58,7 @@ function beginManager() {
 
 
         }
+        
         else if (manager.option === "View Low Inventory") {
 
             connection.query("SELECT * FROM products WHERE stock_quantity < 5", function(err, res) {
