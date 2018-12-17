@@ -8,10 +8,10 @@ Amazon-like storefront with MySQL. The app will take in orders from customers an
 ![bamazon-customer-gif](https://github.com/JohnnyMeloCareer/Bamazon/blob/master/BamazonCustomer.gif)
 
 #### Bamazon Manager
-- NA
+- In Bamazon Manager, you have access to the supplement. Now you can either add more stuff, or add a entirely new product!
 
 
-![bamazon-manager-gif](NA)
+![bamazon-manager-gif](https://github.com/JohnnyMeloCareer/Bamazon/blob/master/BamazonManager.gif)
 
 
 #### Bamazon Supervisor
@@ -22,4 +22,4 @@ Amazon-like storefront with MySQL. The app will take in orders from customers an
 
 
 ### Bamazon Conclusion
-- NA
+- Bamazon, is a live market where customers can come in and buy stuff! While the Managers, and Supervisors having access in the back side of the market to either add more stuff and do various of other things!
